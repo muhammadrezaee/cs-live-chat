@@ -1,0 +1,801 @@
+/* متغیرها */
+:root {
+    --cslc-primary: #667eea;
+    --cslc-secondary: #764ba2;
+    --cslc-bg: #f8f9fa;
+    --cslc-text: #333;
+    --cslc-border: #e9ecef;
+    --cslc-user-bubble: linear-gradient(135deg, var(--cslc-primary), var(--cslc-secondary));
+    --cslc-admin-bubble: #fff;
+}
+
+.cslc-chat-widget.dark-mode {
+    --cslc-bg: #1a1a2e;
+    --cslc-text: #eee;
+    --cslc-border: #2d2d44;
+    --cslc-admin-bubble: #2d2d44;
+}
+
+/* ویجت اصلی */
+.cslc-chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999999;
+    font-family: Tahoma, Arial, sans-serif;
+    direction: rtl;
+}
+
+.cslc-chat-widget[data-position="bottom-left"] {
+    right: auto;
+    left: 20px;
+}
+
+/* دکمه چت */
+.cslc-chat-button {
+    width: 65px;
+    height: 65px;
+    background: var(--cslc-user-bubble);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cslc-chat-button:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.cslc-chat-button.shake {
+    animation: cslc-shake 0.5s ease;
+}
+
+@keyframes cslc-shake {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+}
+
+.cslc-chat-icon {
+    font-size: 30px;
+    z-index: 2;
+}
+
+/* انیمیشن Pulse */
+.cslc-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--cslc-primary);
+    opacity: 0.6;
+    animation: cslc-pulse 2s infinite;
+}
+
+@keyframes cslc-pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* بج پیام */
+.cslc-chat-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    min-width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 3;
+    border: 2px solid white;
+    animation: cslc-badge-pop 0.3s ease;
+}
+
+@keyframes cslc-badge-pop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+/* پنجره چت */
+.cslc-chat-window {
+    position: absolute;
+    bottom: 85px;
+    right: 0;
+    width: 370px;
+    height: 550px;
+    background: var(--cslc-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: cslc-slide-up 0.3s ease;
+}
+
+@keyframes cslc-slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* هدر */
+.cslc-chat-header {
+    background: var(--cslc-user-bubble);
+    color: white;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cslc-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cslc-header-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.cslc-chat-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cslc-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 3px;
+}
+
+.cslc-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00ff00;
+    box-shadow: 0 0 5px #00ff00;
+}
+
+.cslc-status.offline .cslc-status-dot {
+    background: #999;
+    box-shadow: none;
+}
+
+.cslc-chat-close {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.cslc-chat-close:hover {
+    background: rgba(255,255,255,0.3);
+    transform: rotate(90deg);
+}
+
+/* فرم قبل از چت */
+.cslc-pre-chat-form {
+    padding: 25px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.cslc-welcome {
+    text-align: center;
+    color: var(--cslc-text);
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.cslc-pre-chat-form input {
+    padding: 12px 15px;
+    border: 2px solid var(--cslc-border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.2s;
+    background: white;
+}
+
+.cslc-pre-chat-form input:focus {
+    outline: none;
+    border-color: var(--cslc-primary);
+}
+
+.cslc-start-btn {
+    background: var(--cslc-user-bubble);
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.cslc-start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* پیام‌ها */
+.cslc-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cslc-chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cslc-chat-messages::-webkit-scrollbar-thumb {
+    background: var(--cslc-border);
+    border-radius: 3px;
+}
+
+.cslc-message {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    animation: cslc-message-in 0.3s ease;
+}
+
+@keyframes cslc-message-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cslc-message.user {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.cslc-message.admin, .cslc-message.system {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.cslc-message-bubble {
+    padding: 10px 15px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    line-height: 1.5;
+    font-size: 14px;
+    color: var(--cslc-text);
+}
+
+.cslc-message.user .cslc-message-bubble {
+    background: var(--cslc-user-bubble);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.cslc-message.admin .cslc-message-bubble {
+    background: var(--cslc-admin-bubble);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.cslc-message.system .cslc-message-bubble {
+    background: #fff3cd;
+    color: #856404;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.cslc-message-file {
+    display: inline-block;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    margin-top: 5px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 13px;
+}
+
+.cslc-message.user .cslc-message-file {
+    color: white;
+}
+
+.cslc-message-time {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+    padding: 0 5px;
+}
+
+/* تایپینگ */
+.cslc-typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 12px 15px;
+    background: var(--cslc-admin-bubble);
+    border-radius: 18px;
+    width: fit-content;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.cslc-typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: #999;
+    border-radius: 50%;
+    animation: cslc-typing 1.4s infinite;
+}
+
+.cslc-typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.cslc-typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes cslc-typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* ناحیه ورودی */
+.cslc-chat-input-area {
+    padding: 12px 15px;
+    background: white;
+    border-top: 1px solid var(--cslc-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+#cslc-chat-input {
+    flex: 1;
+    border: 1px solid var(--cslc-border);
+    border-radius: 20px;
+    padding: 10px 15px;
+    resize: none;
+    font-family: inherit;
+    font-size: 14px;
+    max-height: 80px;
+}
+
+#cslc-chat-input:focus {
+    outline: none;
+    border-color: var(--cslc-primary);
+}
+
+.cslc-emoji-btn, .cslc-attach-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.cslc-emoji-btn:hover, .cslc-attach-btn:hover {
+    transform: scale(1.2);
+}
+
+.cslc-send-btn {
+    background: var(--cslc-user-bubble);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cslc-send-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ایموجی پیکر */
+.cslc-emoji-picker {
+    position: absolute;
+    bottom: 60px;
+    right: 15px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    padding: 10px;
+    width: 280px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3px;
+    z-index: 10;
+}
+
+.cslc-emoji-item {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.cslc-emoji-item:hover {
+    background: #f0f0f0;
+    transform: scale(1.3);
+}
+
+/* فوتر */
+.cslc-chat-footer {
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-top: 1px solid var(--cslc-border);
+    text-align: center;
+    font-size: 12px;
+}
+
+.cslc-whatsapp-link {
+    display: inline-block;
+    color: #25D366;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 5px;
+    padding: 5px 12px;
+    background: rgba(37, 211, 102, 0.1);
+    border-radius: 15px;
+    transition: all 0.2s;
+}
+
+.cslc-whatsapp-link:hover {
+    background: rgba(37, 211, 102, 0.2);
+}
+
+.cslc-footer-info {
+    color: #999;
+    margin-top: 5px;
+}
+
+.cslc-footer-info a {
+    color: var(--cslc-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* مودال امتیاز */
+.cslc-rating-modal {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    z-index: 100;
+}
+
+.cslc-rating-modal h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+}
+
+.cslc-stars {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cslc-stars span {
+    font-size: 35px;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.cslc-stars span.active, .cslc-stars span:hover, .cslc-stars span:hover ~ span {
+    color: #ffd700;
+    transform: scale(1.2);
+}
+
+.cslc-stars span:hover ~ span {
+    color: #666;
+}
+
+.cslc-rating-modal textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 15px;
+    font-family: inherit;
+    resize: none;
+}
+
+.cslc-submit-rating-btn {
+    background: var(--cslc-user-bubble);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* ریسپانسیو */
+@media (max-width: 480px) {
+    .cslc-chat-window {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 100px);
+        bottom: 75px;
+        right: -10px;
+    }
+}
+
+/* ایموجی */
+/* ===== ایموجی پیکر حرفه‌ای ===== */
+.cslc-emoji-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 8px;
+    transition: all 0.2s;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.cslc-emoji-btn:hover {
+    background: #f0f0f0;
+    transform: scale(1.15);
+}
+
+.cslc-emoji-btn.active {
+    background: #e0e7ff;
+}
+
+/* پنل ایموجی */
+.cslc-emoji-picker {
+    position: absolute;
+    bottom: 70px;
+    right: 15px;
+    width: 320px;
+    max-height: 350px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    border: 1px solid #e9ecef;
+    animation: cslc-emoji-pop 0.25s ease;
+}
+
+.cslc-emoji-picker.show {
+    display: flex;
+}
+
+@keyframes cslc-emoji-pop {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* جستجوی ایموجی */
+.cslc-emoji-search {
+    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+    background: #f8f9fa;
+}
+
+.cslc-emoji-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.cslc-emoji-search input:focus {
+    border-color: #667eea;
+}
+
+/* لیست ایموجی‌ها */
+.cslc-emoji-list {
+    padding: 10px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+    max-height: 280px;
+}
+
+.cslc-emoji-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cslc-emoji-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.cslc-emoji-item {
+    font-size: 22px;
+    cursor: pointer;
+    padding: 6px;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.15s;
+    user-select: none;
+}
+
+.cslc-emoji-item:hover {
+    background: #f0f4ff;
+    transform: scale(1.3);
+}
+
+.cslc-emoji-item:active {
+    transform: scale(0.9);
+}
+
+/* مخفی کردن ایموجی‌های فیلتر شده */
+.cslc-emoji-item.hidden {
+    display: none;
+}
+
+/* attachment */
+/* ===== آپلود فایل حرفه‌ای ===== */
+.cslc-attach-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.cslc-file-input-hidden {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.cslc-attach-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 5px 8px;
+    transition: all 0.2s;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.cslc-attach-btn:hover {
+    background: #f0f0f0;
+    transform: scale(1.15) rotate(-10deg);
+}
+
+.cslc-attach-btn.uploading {
+    animation: cslc-spin 1s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes cslc-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* پیام خطا */
+.cslc-error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin: 10px 15px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: cslc-slide-down 0.3s ease;
+    border-right: 3px solid #c62828;
+}
+
+.cslc-error-message .cslc-close-error {
+    margin-right: auto;
+    background: none;
+    border: none;
+    color: #c62828;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0 5px;
+}
+
+@keyframes cslc-slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* پیش‌نمایش آپلود */
+.cslc-upload-progress {
+    background: #f0f4ff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin: 10px 15px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: cslc-slide-down 0.3s ease;
+}
+
+.cslc-upload-progress .cslc-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #667eea;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: cslc-spin 0.8s linear infinite;
+}
+
+.cslc-upload-progress .cslc-file-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

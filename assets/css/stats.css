@@ -1,0 +1,399 @@
+/* ===== صفحه آمار - نسخه قطعی ===== */
+
+/* پس‌زمینه کل صفحه */
+.cslc-stats-wrap {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    padding: 30px !important;
+    min-height: 100vh !important;
+    direction: rtl !important;
+    font-family: Tahoma, Arial, sans-serif !important;
+}
+
+.cslc-stats-wrap h1,
+.cslc-stats-title {
+    color: white !important;
+    font-size: 32px !important;
+    margin-bottom: 30px !important;
+    text-align: center !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+}
+
+/* ===== گرید کارت‌ها ===== */
+.cslc-stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    margin-bottom: 30px !important;
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.cslc-stat-card {
+    background: white !important;
+    border-radius: 20px !important;
+    padding: 25px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    min-height: 180px !important;
+}
+
+.cslc-stat-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3) !important;
+}
+
+/* نوار رنگی بالای هر کارت */
+.cslc-stat-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 5px !important;
+}
+
+.cslc-stat-card-1::before { background: linear-gradient(90deg, #667eea, #764ba2) !important; }
+.cslc-stat-card-2::before { background: linear-gradient(90deg, #00b894, #00cec9) !important; }
+.cslc-stat-card-3::before { background: linear-gradient(90deg, #fdcb6e, #e17055) !important; }
+.cslc-stat-card-4::before { background: linear-gradient(90deg, #e17055, #d63031) !important; }
+.cslc-stat-card-5::before { background: linear-gradient(90deg, #a29bfe, #6c5ce7) !important; }
+.cslc-stat-card-6::before { background: linear-gradient(90deg, #fd79a8, #e84393) !important; }
+
+.cslc-stat-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 15px !important;
+}
+
+.cslc-stat-icon {
+    font-size: 40px !important;
+    width: 70px !important;
+    height: 70px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 15px !important;
+}
+
+.cslc-stat-card-1 .cslc-stat-icon { background: linear-gradient(135deg, #667eea, #764ba2) !important; color: white !important; }
+.cslc-stat-card-2 .cslc-stat-icon { background: linear-gradient(135deg, #00b894, #00cec9) !important; color: white !important; }
+.cslc-stat-card-3 .cslc-stat-icon { background: linear-gradient(135deg, #fdcb6e, #e17055) !important; color: white !important; }
+.cslc-stat-card-4 .cslc-stat-icon { background: linear-gradient(135deg, #e17055, #d63031) !important; color: white !important; }
+.cslc-stat-card-5 .cslc-stat-icon { background: linear-gradient(135deg, #a29bfe, #6c5ce7) !important; color: white !important; }
+.cslc-stat-card-6 .cslc-stat-icon { background: linear-gradient(135deg, #fd79a8, #e84393) !important; color: white !important; }
+
+.cslc-stat-trend {
+    padding: 5px 12px !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+
+.cslc-stat-trend.up {
+    background: #d4edda !important;
+    color: #155724 !important;
+}
+
+.cslc-stat-trend.down {
+    background: #f8d7da !important;
+    color: #721c24 !important;
+}
+
+.cslc-stat-value {
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    color: #2d3748 !important;
+    margin: 10px 0 !important;
+    line-height: 1 !important;
+}
+
+.cslc-stat-label {
+    font-size: 14px !important;
+    color: #718096 !important;
+    margin-bottom: 15px !important;
+}
+
+.cslc-stat-bar {
+    height: 6px !important;
+    background: #e2e8f0 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+}
+
+.cslc-stat-bar-fill {
+    height: 100% !important;
+    border-radius: 10px !important;
+    transition: width 1s ease !important;
+}
+
+.cslc-stat-card-1 .cslc-stat-bar-fill { background: linear-gradient(90deg, #667eea, #764ba2) !important; }
+.cslc-stat-card-2 .cslc-stat-bar-fill { background: linear-gradient(90deg, #00b894, #00cec9) !important; }
+.cslc-stat-card-3 .cslc-stat-bar-fill { background: linear-gradient(90deg, #fdcb6e, #e17055) !important; }
+.cslc-stat-card-4 .cslc-stat-bar-fill { background: linear-gradient(90deg, #e17055, #d63031) !important; }
+.cslc-stat-card-5 .cslc-stat-bar-fill { background: linear-gradient(90deg, #a29bfe, #6c5ce7) !important; }
+.cslc-stat-card-6 .cslc-stat-bar-fill { background: linear-gradient(90deg, #fd79a8, #e84393) !important; }
+
+/* ===== نمودارها ===== */
+.cslc-charts-row {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+    gap: 20px !important;
+    margin-bottom: 30px !important;
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.cslc-chart-box {
+    background: white !important;
+    border-radius: 20px !important;
+    padding: 25px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+}
+
+.cslc-chart-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 15px !important;
+    border-bottom: 2px solid #f0f0f0 !important;
+}
+
+.cslc-chart-header h2 {
+    color: #2d3748 !important;
+    margin: 0 !important;
+    font-size: 20px !important;
+}
+
+.cslc-chart-body {
+    min-height: 250px !important;
+}
+
+/* نمودار میله‌ای */
+.cslc-bar-chart-container {
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-around !important;
+    height: 200px !important;
+    padding: 20px 10px 0 !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    position: relative !important;
+}
+
+.cslc-bar-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    flex: 1 !important;
+    max-width: 60px !important;
+    height: 100% !important;
+    justify-content: flex-end !important;
+}
+
+.cslc-bar {
+    width: 40px !important;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%) !important;
+    border-radius: 8px 8px 0 0 !important;
+    transition: all 0.5s ease !important;
+    position: relative !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+}
+
+.cslc-bar:hover {
+    filter: brightness(1.15) !important;
+    transform: scaleX(1.1) !important;
+}
+
+.cslc-bar-value {
+    position: absolute !important;
+    top: -25px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #667eea !important;
+}
+
+.cslc-bar-label {
+    margin-top: 10px !important;
+    font-size: 12px !important;
+    color: #718096 !important;
+    font-weight: 500 !important;
+}
+
+/* نمودار دایره‌ای */
+.cslc-pie-chart-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+.cslc-pie-chart {
+    width: 180px !important;
+    height: 180px !important;
+    border-radius: 50% !important;
+    position: relative !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+.cslc-pie-center {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100px !important;
+    height: 100px !important;
+    background: white !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+}
+
+.cslc-pie-value {
+    font-size: 28px !important;
+    font-weight: bold !important;
+    color: #2d3748 !important;
+}
+
+.cslc-pie-label {
+    font-size: 12px !important;
+    color: #718096 !important;
+}
+
+.cslc-pie-legend {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+.cslc-pie-legend-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 8px !important;
+    background: #f7fafc !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+}
+
+.cslc-pie-legend-dot {
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+}
+
+.cslc-pie-legend-label {
+    flex: 1 !important;
+    color: #4a5568 !important;
+}
+
+.cslc-pie-legend-value {
+    font-weight: bold !important;
+    color: #2d3748 !important;
+}
+
+/* آمار سریع */
+.cslc-quick-stats {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.cslc-quick-stat {
+    background: white !important;
+    border-radius: 15px !important;
+    padding: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1) !important;
+    transition: all 0.3s ease !important;
+    border-right: 4px solid #667eea !important;
+}
+
+.cslc-quick-stat:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+}
+
+.cslc-quick-icon {
+    font-size: 30px !important;
+    width: 55px !important;
+    height: 55px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    border-radius: 12px !important;
+    flex-shrink: 0 !important;
+}
+
+.cslc-quick-info {
+    flex: 1 !important;
+}
+
+.cslc-quick-value {
+    font-size: 22px !important;
+    font-weight: bold !important;
+    color: #2d3748 !important;
+    margin-bottom: 3px !important;
+}
+
+.cslc-quick-label {
+    font-size: 12px !important;
+    color: #718096 !important;
+}
+
+/* لودینگ */
+.cslc-chart-loading {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 200px !important;
+    color: #718096 !important;
+}
+
+.cslc-spinner {
+    width: 40px !important;
+    height: 40px !important;
+    border: 4px solid #e2e8f0 !important;
+    border-top-color: #667eea !important;
+    border-radius: 50% !important;
+    animation: spin 1s linear infinite !important;
+    margin-bottom: 15px !important;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg) !important; }
+}
+
+/* ریسپانسیو */
+@media (max-width: 1024px) {
+    .cslc-charts-row {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .cslc-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .cslc-quick-stats {
+        grid-template-columns: 1fr !important;
+    }
+}
